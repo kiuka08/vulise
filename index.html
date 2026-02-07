@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Нажми, когда готов</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: #111;
+      color: white;
+      font-family: sans-serif;
+      text-align: center;
+    }
+    button {
+      font-size: 20px;
+      padding: 14px 28px;
+      border-radius: 10px;
+      background: #ff4d6d;
+      border: none;
+      color: white;
+      cursor: pointer;
+    }
+    img { max-width: 80%; margin-top: 20px; border-radius: 18px; }
+    .hidden { display: none; }
+  </style>
+</head>
+<body>
+
+  <div id="start">
+    <h1>Нажми, когда готов ❤️</h1>
+    <button onclick="start()">Готов</button>
+  </div>
+
+  <div id="content" class="hidden">
+    <h2>Для тебя 💕</h2>
+    <img src="https://i.pinimg.com/736x/1e/ff/3e/1eff3e729521b6a839ffe7bf20e93e72.jpg" alt="Сердечко">
+  </div>
+
+  <audio id="sound" src="c:\Users\ASUS\Downloads\Звук Стоны Девушки Мем.mp3" preload="auto"></audio>
+
+  <script>
+    function start() {
+      const sound = document.getElementById("sound");
+
+      // 1) разрешение на звук
+      sound.play().then(() => {
+        sound.pause();
+        sound.currentTime = 0;
+      });
+
+      // 2) показать картинку
+      document.getElementById("start").classList.add("hidden");
+      document.getElementById("content").classList.remove("hidden");
+
+      // 3) через 2 секунды звук
+      setTimeout(() => {
+        sound.play();
+      }, 2000);
+    }
+  </script>
+
+</body>
+</html>
